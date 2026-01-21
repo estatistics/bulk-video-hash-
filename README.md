@@ -21,7 +21,7 @@ The script uses the following Python libraries:
 - ImageHash: for perceptual hashing (dHash).
 - Standard Python libraries: os, sqlite3, concurrent.futures.
 
-### Install dependencies:
+### Install dependencies
 `pip install opencv-python Pillow ImageHash`
 
 ### Usage
