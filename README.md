@@ -29,13 +29,14 @@ The script uses the following Python libraries:
 - Place your videos in a folder (default: ./).
 - Configure options at the top of the script:
 
+```
 VIDEO_ROOT = "./"           # Folder to scan for videos
 FRAMES_PER_SEGMENT = 1000   # Frames per segment
 MAX_SEGMENTS = 400          # Max segments per video
 RESIZE_DIM = (64, 64)       # Resize frames for hashing
 MAX_WORKERS = 8             # Parallel threads
 DB_PATH = "vhash_files.db"  # SQLite database file
-
+```
 Run the script:
 `python video_vhash.py`
 
@@ -89,4 +90,41 @@ SELECT hash1, hash2, hash3 FROM videos WHERE video_path = 'video1.mp4';
   - commonsB.csv – common files from DB-B
   - uniquefiles_a.csv – unique to DB-A
   - uniquefiles_b.csv – unique to DB-B
- 
+
+4) video_dhash_partial_matches_betw_db.py – Find partial video hash matches between two databases
+- Compares dHash segments of videos stored in two SQLite databases.
+- Counts matching dHash segments between videos to detect partial duplicates or similar videos.
+- You must ensure the dHASH columns in the SQL SELECT statements MATCH your database schema.
+- Logs results to a CSV file (video_match_filtered.csv) with columns:
+```
+video_path_db – path in first database
+video_path_orig – path in second database
+match_count – number of matching dHash segments
+```
+
+Filters results using thresholds:
+- low_dhash_match – minimum matching segments to log (default: 3)
+- max_dhash_match – maximum matching segments to log (default: 5)
+
+5) video_dhash_remove_pathsTXT.py – Remove video entries from database using a TXT list
+- Reads a list of video paths from a text file (ok.txt).
+- Deletes all matching rows from a specified SQLite table (videos) and column (video_path).
+- Processes deletions in batches to avoid SQL query limits for very large lists.
+- Optionally compacts the database (VACUUM) after deletions to reclaim disk space.
+- Prints the number of deleted rows for confirmation.
+
+- Make sure DB_PATH, TXT_PATH, TABLE_NAME, and COLUMN_NAME match your setup.
+- TXT file should contain one video path per line.
+
+6) count_ext_in_db.py – Count file extensions in a video hash database
+- Reads all video_path entries from a SQLite database (vhash_files.db).
+- Extracts the file extension from each path.
+- Counts how many videos exist per extension (e.g., mp4, mkv, avi).
+- Prints a sorted list of extensions from most to least common.
+
+7) sumcount_exts_files.sh – Count file extensions in a directory (Bash)
+- Recursively scans the current directory (.) for all files.
+- Extracts file extensions from filenames.
+- Counts how many files exist for each extension.
+- Prints a sorted list from most common to least common.
+- Labels files without an extension as [no_ext].
