@@ -58,10 +58,10 @@ Run the script:
 - Ensures even short videos are indexed.
 
 Example Query
--- Find videos with at least one zero-hash segment
+- Find videos with at least one zero-hash segment
 SELECT video_path, zero_count FROM videos WHERE zero_count > 0;
 
--- Compare hashes between two videos
+- Compare hashes between two videos
 SELECT hash1, hash2, hash3 FROM videos WHERE video_path = 'video1.mp4';
 
 
