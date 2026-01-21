@@ -72,6 +72,7 @@ SELECT hash1, hash2, hash3 FROM videos WHERE video_path = 'video1.mp4';
 - Deletes any rows where the file is missing.
 - Prints a log of deleted entries and the total removed count.
 
+
 2) del_find_dublicates_files_from_2db.py – Find and optionally delete duplicate videos across two databases
 - Compares videos between a main DB and an original DB using their dHash values (dhash_1 … dhash_20).
 - Detects duplicate videos (same hash across databases).
@@ -80,16 +81,19 @@ SELECT hash1, hash2, hash3 FROM videos WHERE video_path = 'video1.mp4';
 - Optionally removes duplicate rows from the main DB (DELETE_DB_ROWS = True).
 - Saves paths of deleted files to a text file (paths_tobe_deleted.txt) for record-keeping.
 
+
 3) compare_dhash_image_in2db.py – Compare image hashes between two databases
 - Loads image paths and their dHashes from two SQLite databases.
 - Compares the dHashes to find:
   - Common images (same hash in both databases).
   - Unique images (present in only one database).
 - Exports results to CSV files:
-  - commonsA.csv – common files from DB-A
-  - commonsB.csv – common files from DB-B
-  - uniquefiles_a.csv – unique to DB-A
-  - uniquefiles_b.csv – unique to DB-B
+```
+commonsA.csv – common files from DB-A
+commonsB.csv – common files from DB-B
+uniquefiles_a.csv – unique to DB-A
+uniquefiles_b.csv – unique to DB-B
+```
 
 4) video_dhash_partial_matches_betw_db.py – Find partial video hash matches between two databases
 - Compares dHash segments of videos stored in two SQLite databases.
@@ -106,6 +110,8 @@ Filters results using thresholds:
 - low_dhash_match – minimum matching segments to log (default: 3)
 - max_dhash_match – maximum matching segments to log (default: 5)
 
+
+
 5) video_dhash_remove_pathsTXT.py – Remove video entries from database using a TXT list
 - Reads a list of video paths from a text file (ok.txt).
 - Deletes all matching rows from a specified SQLite table (videos) and column (video_path).
@@ -116,11 +122,15 @@ Filters results using thresholds:
 - Make sure DB_PATH, TXT_PATH, TABLE_NAME, and COLUMN_NAME match your setup.
 - TXT file should contain one video path per line.
 
+
+
 6) count_ext_in_db.py – Count file extensions in a video hash database
 - Reads all video_path entries from a SQLite database (vhash_files.db).
 - Extracts the file extension from each path.
 - Counts how many videos exist per extension (e.g., mp4, mkv, avi).
 - Prints a sorted list of extensions from most to least common.
+
+
 
 7) sumcount_exts_files.sh – Count file extensions in a directory (Bash)
 - Recursively scans the current directory (.) for all files.
