@@ -138,3 +138,26 @@ Filters results using thresholds:
 - Counts how many files exist for each extension.
 - Prints a sorted list from most common to least common.
 - Labels files without an extension as [no_ext].
+
+
+
+# Helpful Tools summary 
+
+## 1️⃣ Database Cleaners
+Tools for cleaning or deduplicating your SQLite video/image databases.
+
+- **`clean_nonexistpaths_from_db.py`** – Removes DB rows for missing files.
+- **`video_dhash_remove_pathsTXT.py`** – Remove DB entries using a TXT list.
+- **`del_find_dublicates_files_from_2db.py`** – Detect and optionally remove duplicate files across two DBs.
+
+## 2️⃣ Duplicate & Similarity Analysis
+Tools for finding duplicates or partial matches.
+
+- **`compare_dhash_image_in2db.py`** – Compare image hashes across two DBs.
+- **`video_dhash_partial_matches_betw_db.py`** – Find videos with partially matching dHashes.
+
+## 3️⃣ File & Extension Analysis
+Tools for analyzing file types or counting extensions.
+
+- **`count_ext_in_db.py`** – Count file extensions stored in a database.
+- **`sumcount_exts_files.sh`** – Count file extensions in a directory (Bash).
