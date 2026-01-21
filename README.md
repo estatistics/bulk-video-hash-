@@ -14,17 +14,17 @@ This Python script scans a directory of videos and generates per-segment percept
 - Can continue if stopt from where it remained
 - Configurable segment size, maximum number of segments, and resize dimensions for hash computation.
 
-# Dependencies
+### Dependencies
 The script uses the following Python libraries:
 - opencv-python: for video reading and frame processing.
 - Pillow: for image handling.
 - ImageHash: for perceptual hashing (dHash).
 - Standard Python libraries: os, sqlite3, concurrent.futures.
 
-# Install dependencies:
+### Install dependencies:
 `pip install opencv-python Pillow ImageHash`
 
-# Usage
+### Usage
 - Clone or download this repository.
 - Place your videos in a folder (default: ./).
 - Configure options at the top of the script:
@@ -37,15 +37,15 @@ MAX_WORKERS = 8             # Parallel threads
 DB_PATH = "vhash_files.db"  # SQLite database file
 
 Run the script:
-- `python video_vhash.py`
+`python video_vhash.py`
 
-# The script will create/update vhash_files.db with columns:
+### The script will create/update vhash_files.db with columns:
 - video_path – full path to the video
 - segment_count – number of segments actually hashed
 - zero_count – number of failed frames
 - hash1, hash2, ..., hash400 – per-segment hashes (padded with "0" if fewer segments)
 
-# How It Works
+### How It Works
 - Video scanning: Walks through the specified directory recursively and finds video files with allowed extensions.
 - Per-segment hashing: Each video is divided into segments of FRAMES_PER_SEGMENT.
 - The middle frame of each segment is extracted.
@@ -57,7 +57,7 @@ Run the script:
 - Small videos: If a video is smaller than one segment, at least one frame is hashed.
 - Ensures even short videos are indexed.
 
-Example Query
+### Example Query
 - Find videos with at least one zero-hash segment
 SELECT video_path, zero_count FROM videos WHERE zero_count > 0;
 
