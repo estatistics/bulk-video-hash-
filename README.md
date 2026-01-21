@@ -65,6 +65,11 @@ SELECT video_path, zero_count FROM videos WHERE zero_count > 0;
 - Compare hashes between two videos
 SELECT hash1, hash2, hash3 FROM videos WHERE video_path = 'video1.mp4';
 
+---
+---
+---
+
+
 ### Useful tools
 ### 1) clean_nonexistpaths_from_db.py – Remove DB entries for missing video files
 - Scans a SQLite database table containing video paths.
