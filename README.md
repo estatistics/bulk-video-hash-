@@ -1,5 +1,5 @@
 ### Video Segment dHash/vhash Processor 
-## Introduction
+## Introduction of main script "vhash_db.py"
 This Python script scans a directory of videos and generates per-segment perceptual hashes (dHashes) for each video. These hashes allow you to efficiently compare videos, detect duplicates, or analyze video similarity. The script handles large videos by splitting them into segments and hashing representative frames, while also ensuring that small videos with very few frames are still processed and assigned at least one hash. This is done per 1000 frames, ideal for video indexing and finding if smaller clips are from bigger videos. Also,  smaller files with less frames are indexed with 1 frame at least. 
 - It stores the results in a SQLite database (vhash_files.db), making it easy to query and integrate with other systems.
 
