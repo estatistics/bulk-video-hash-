@@ -155,6 +155,15 @@ Filters results using thresholds:
 ---
 ---
 
+### 8) simfiles_mvSEQfolders.py: video files with >90% similarity moved into grouped folders
+- This script reads a SQLite database of videos with hash values
+- identifies videos that share the same hash (or meet a similarity threshold)
+- automatically moves each group of similar videos into numbered folders.
+- Videos without matches remain in their original location.
+- Useful for organizing large video collections based on content similarity.
+
+---
+---
 # Helpful Tools summary 
 
 ## 1️⃣ Database Cleaners
@@ -169,7 +178,8 @@ Tools for finding duplicates or partial matches.
 
 - **`compare_dhash_image_in2db.py`** – Compare image hashes across two DBs.
 - **`video_dhash_partial_matches_betw_db.py`** – Find videos with partially matching dHashes.
-
+- **`simfiles_mvSEQfolders.py`** – Video files with >90% similarity moved into grouped folders
+  
 ## 3️⃣ File & Extension Analysis
 Tools for analyzing file types or counting extensions.
 
